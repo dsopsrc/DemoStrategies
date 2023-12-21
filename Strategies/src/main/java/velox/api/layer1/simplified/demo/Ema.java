@@ -18,7 +18,7 @@ public class Ema implements CustomModule, TradeDataListener, IntervalListener {
     private Indicator emaIndicator;
     private double lastPrice = Double.NaN;
     private double emaValue = Double.NaN;
-    private double alpha = 0.99;
+    private double alpha = 0.96;
 
     @Override
     public void initialize(String s, InstrumentInfo instrumentInfo, Api api, InitialState initialState) {
