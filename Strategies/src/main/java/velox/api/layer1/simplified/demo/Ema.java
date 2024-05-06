@@ -23,7 +23,7 @@ public class Ema implements CustomModule, TradeDataListener, IntervalListener {
     @Override
     public void initialize(String s, InstrumentInfo instrumentInfo, Api api, InitialState initialState) {
         emaIndicator = api.registerIndicator("EMA", Layer1ApiUserMessageModifyIndicator.GraphType.PRIMARY);
-        emaIndicator.setColor(Color.GREEN);
+        emaIndicator.setColor(Color.MAGENTA);
     }
 
     @Override
