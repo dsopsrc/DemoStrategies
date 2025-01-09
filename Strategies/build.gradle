@@ -2,13 +2,13 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'idea'
-    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.7'
+    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
 }
 
-// This is optional, tells gradle that we want Java 11 compatible bytecode.
-// Can be removed in standalone addons
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
@@ -23,15 +23,22 @@ dependencies {
         implementation project(':Level1Api')
         implementation project(':SimplifiedApiWrapper')
     } else {
-        compileOnly group: 'com.bookmap.api', name: 'api-core', version: '7.4.0.21'
-        compileOnly group: 'com.bookmap.api', name: 'api-simplified', version: '7.4.0.21'
+        compileOnly group: 'com.bookmap.api', name: 'api-core', version: '7.6.0.11'
+        compileOnly group: 'com.bookmap.api', name: 'api-simplified', version: '7.6.0.11'
 
-        compileOnly group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+        compileOnly group: 'org.apache.commons', name: 'commons-lang3', version: '3.13.0'
     }
 }
 
 jar {
     archiveFileName = 'bm-strategies.jar'
+}
+
+task copyBmStrategies (type: Copy) {
+    from("$buildDir/libs") {
+        include('*.jar')
+    }
+    into("C:/Bookmap/API/Layer1ApiModules")
 }
 
 eclipse.classpath.downloadJavadoc = true
